@@ -81,6 +81,27 @@ export default {
                         }
                     ]
                 },
+                {
+                    name: 'contactEmail',
+                    type: 'string',
+                    title: 'Contact Email',
+                    description: 'This is the email that your visitors can use to contact you. Please note that your email format should start with "mailto:"',
+                    validation: Rule =>
+                    Rule.custom((email) => {
+                        if (!/^mailto:/i.test(email)) {
+                            return 'Invalid email format. It should start with "mailto:"';
+                        }
+                        
+                        const emailAddress = email.replace(/^mailto:/i, '');
+                        const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+
+                        if (!emailRegex.test(emailAddress)) {
+                            return 'Invalid email address';
+                        }
+
+                        return true;
+                    }).error('Please enter a valid email address')
+                }
             ]
         }
     ]
