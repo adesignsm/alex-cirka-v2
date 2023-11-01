@@ -1,3 +1,18 @@
+@font-face {
+    font-family: 'Liberation Sans Regular';
+    src: url(../../Assets/Fonts/LiberationSans-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'Liberation Sans Bold';
+    src: url(../../Assets/Fonts/LiberationSans-Bold.ttf);
+}
+
+@font-face {
+    font-family: 'Gotham Black';
+    src: url(../../Assets/Fonts/Gotham-Black.otf);
+}
+
 .header-nav {
     padding: 1rem;
 }
@@ -29,15 +44,18 @@
 .header-nav .header-logo a {
     color: #000;
     text-decoration: none;
+    font-family: 'Gotham Black';
 }
 
 .header-nav .nav-buttons {
     color: #fff;
+    font-family: 'Liberation Sans Regular';
 }
 
 .header-nav .nav-buttons > a {
     color: #fff;
     text-decoration: none;
+    font-family: 'Liberation Sans Regular';
 }
 
 .header-nav .nav-buttons .dropdown-menu {
@@ -51,21 +69,22 @@
     border-bottom-right-radius: 15px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
     opacity: 1;
-    z-index: 0;
+    z-index: -1;
     opacity: 0;
     transition: opacity 0.5s, margin-top 0.5s;
 }
 
 .dropdown-menu.active {
     opacity: 1 !important;
-    margin-top: 1rem !important;
+    margin-top: 6rem !important;
+    z-index: 0 !important;
 }
 
 .header-nav .nav-buttons .dropdown-menu li {
     margin: 0;
     padding: 0;
     border-bottom: 1px solid #000;
-    font-size: medium;
+    font-size: small;
 }
 
 .header-nav .nav-buttons .dropdown-menu a {
@@ -75,4 +94,14 @@
 
 .header-nav .nav-buttons .dropdown-menu span {
     margin-left: 1rem;
+}
+
+.chevron, .chevron-active {
+    pointer-events: none;
+    margin-left: 0.5rem;
+}
+
+.has-dropdown {
+    display: flex;
+    align-items: center;
 }

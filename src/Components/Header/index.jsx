@@ -1,32 +1,47 @@
-import React, { useEffect, useState } from "react";
-import sanityClient from "../../sanity";
+import React, { useEffect, useState } from 'react';
+import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
+import sanityClient from '../../sanity';
+import ImageUrlBuilder from '@sanity/image-url';
 
 import "./index.css";
 
 const Header = () => {
     const [data, setData] = useState([]);
     const [logo, setLogo] = useState('');
+    const [imageLogo, setImageLogo] = useState('');
     const [buttons, setButtons] = useState([]);
     const [showDropDown, setShowDropDown] = useState(false);
+    const [activeDropDown, setActiveDropDown] = useState(false);
+
+    const imageBuilder = ImageUrlBuilder(sanityClient);
+    const urlFor = (source) => {
+        return imageBuilder.image(source);
+    }
 
     useEffect(() => {
         sanityClient.fetch('*[_type == "header"][0]').then((result) => {
             setData(result);
         }).catch((error) => {
+            // eslint-disable-next-line
             console.error(error);
         });
     }, []);
 
     useEffect(() => {
         if (data) {
-            if (data.logoType === 'textLogo') setLogo(data.textLogoInput || data.imageLogoUpload);
+            if (data.logoType === 'textLogo') {
+                setLogo(data.textLogoInput);
+            } else if (data.logoType === 'imageLogo') {
+                setImageLogo(data.imageLogoUpload.asset._ref);
+            }
             if (data.headerButtons) setButtons(data.headerButtons);
         }
     }, [data]);
-
+    
     const handleDropDownClick = (e) => {
         if (e.target.innerText.toLowerCase().indexOf('work') !== -1) {
             setShowDropDown(!showDropDown);
+            setActiveDropDown(!activeDropDown);
         }
     }
 
@@ -36,13 +51,19 @@ const Header = () => {
                 <ul>
                     <li className="header-logo header-buttons">
                         <a href="/">
-                            {logo}
+                            {data.logoType === 'imageLogo'
+                                ? (
+                                    imageLogo && <img src={urlFor(imageLogo).width(100).url()} />
+                                ) : (
+                                    logo && logo
+                                )
+                            }
                         </a>
                     </li>
                     {buttons.map((button, key) => {
                         return (
                             <li 
-                                key={key} 
+                                key={key}
                                 style={{ backgroundColor : `${button.buttonColour || 'transparent'}` }}
                                 className="nav-buttons header-buttons"
                             >
@@ -52,8 +73,19 @@ const Header = () => {
                                             {button.buttonLabel}
                                         </a>
                                     ) : (
-                                        <div onClick={(e) => handleDropDownClick(e)}>
+                                        <div className='has-dropdown' onClick={(e) => handleDropDownClick(e)}>
                                             {button.buttonLabel}
+                                            {button.buttonLabel.toLowerCase() === 'work' 
+                                                ? (
+                                                    !activeDropDown ? (
+                                                        <FiChevronDown className='chevron' />
+                                                    ) : (
+                                                        <FiChevronUp className='chevron-active' />
+                                                    )
+                                                ) : (
+                                                    null
+                                                )
+                                            }
                                             {button.dropdownOptions && (
                                                 <ul className={`dropdown-menu ${showDropDown ? 'active' : ''}`}>
                                                     {button.dropdownOptions.map((option, index) => {

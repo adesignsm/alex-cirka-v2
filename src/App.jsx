@@ -4,6 +4,7 @@ import sanityClient from "./sanity";
 import "./root.css";
 
 import Header from "./Components/Header";
+import About from "./Components/About";
 
 const App = () => {
     const [data, setData] = useState([]);
@@ -34,6 +35,7 @@ const App = () => {
         <>
             <main style={mainStyle}>
                 <Header />
+                <About />
             </main>
         </>
     )
