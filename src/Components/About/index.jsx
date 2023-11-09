@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import ReactPlayer from 'react-player';
-import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import sanityClient from '../../sanity';
 import ImageUrlBuilder from '@sanity/image-url';
 import Contact from '../Contact';
@@ -34,6 +33,7 @@ const About = () => {
                                 <h3>{data.leftColumn.introText[0].children[0].text}</h3>
                             </article>
                             <article className='select-clients-container'>
+                                <h2> Select Clients </h2>
                                 <ul>
                                     {data.leftColumn.selectClient.map((item, index) => {
                                         return (
@@ -63,7 +63,7 @@ const About = () => {
                             </div>
                             <div className='contact-container'>
                                 {data.rightColumn.contactEmail ? (
-                                    <Contact />
+                                    <Contact data={data}/>
                                 ) : (
                                     <button>
                                         <a href='mailto:alexcirka@gmail.com'> CONTACT </a>

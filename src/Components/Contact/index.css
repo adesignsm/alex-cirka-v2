@@ -1,0 +1,77 @@
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.contact-form input, textarea {
+    width: 100%;
+    margin-bottom: 1rem;
+    padding-top: 1rem;
+    border-left: none;
+    border-top: none;
+    border-bottom: 2px solid #000;
+    border-right: none;
+    font-size: 2em;
+    resize: none;
+}
+
+.contact-form label {
+    position: absolute;
+    margin-top: 15px;
+    text-transform: uppercase;
+    font-family: 'LiberationSans-Bold';
+    font-size: 1.2em;
+    cursor: text;
+    transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    z-index: -0.5;
+}
+.contact-form label.focused {
+    margin-top: 0;
+    font-size: 0.7em;
+    transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.contact-form label > span {
+    color: #ff0000;
+}
+
+.contact-form .submit-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: transparent;
+    border: none;
+    font-size: 1.7em;
+    text-transform: uppercase;
+    width: 8vw;
+    opacity: 0.6;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.contact-form .submit-button:hover {
+    opacity: 1;
+    width: 9vw;
+}
+
+.contact-form .contact-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.contact-form .contact-footer ul {
+    list-style-type: none;
+}
+
+.contact-form .contact-footer ul > li {
+    font-family: 'LiberationSans-Bold';
+    margin-bottom: 0.5rem;
+}
+
+.contact-form .contact-footer ul > li > a {
+    text-decoration: none;
+    color: #000;
+}

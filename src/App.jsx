@@ -18,7 +18,7 @@ const App = () => {
     }, []);
 
     const baseStyle = {
-        height: data.bodyHeight || "100vh",
+        height: data.bodyHeight || "100%",
         width: data.bodyWidth || "100vw"
     };
     const backgroundStyle = {};
