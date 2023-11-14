@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { ContextProvider } from "./utils/context";
 import sanityClient from "./sanity";
 
 import "./root.css";
 
 import Header from "./Components/Header";
 import About from "./Components/About";
+import Scene from "./Components/Scene";
 
 const App = () => {
     const [data, setData] = useState([]);
@@ -34,8 +36,11 @@ const App = () => {
     return (
         <>
             <main style={mainStyle}>
-                <Header />
-                <About />
+                <ContextProvider>
+                    <Header />
+                    <About />
+                    <Scene />
+                </ContextProvider>
             </main>
         </>
     )

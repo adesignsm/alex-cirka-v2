@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { IoClose } from 'react-icons/io5';
+import { Context } from '../../utils/context';
 import ReactPlayer from 'react-player';
 import sanityClient from '../../sanity';
 import ImageUrlBuilder from '@sanity/image-url';
@@ -8,6 +10,9 @@ import "./index.css";
 
 const About = () => {
     const [data, setData] = useState([]);
+    const { aboutOpen, setAboutOpen } = Context();
+
+    console.log(aboutOpen)
 
     const imageBuilder = ImageUrlBuilder(sanityClient);
     const urlFor = (source) => {
@@ -23,9 +28,13 @@ const About = () => {
         });
     }, []);
 
+    const handleCloseAbout = () => {
+        setAboutOpen(false);
+    }
+
     return (
         <>
-            <div className='about-container'>
+            <div className={`about-container ${aboutOpen ? 'show' : 'hidden'}`}>
                 <div className='left-column'>
                     {data.leftColumn &&
                         <>
@@ -46,6 +55,7 @@ const About = () => {
                     }
                 </div>
                 <div className='right-column'>
+                    <IoClose className='close-button' size={40} onClick={handleCloseAbout}/>
                     {data.rightColumn &&
                         <>
                             <div className='video-reel-container'>

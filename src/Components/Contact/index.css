@@ -46,7 +46,7 @@
     border: none;
     font-size: 1.7em;
     text-transform: uppercase;
-    width: 8vw;
+    width: 110px;
     opacity: 0.6;
     cursor: pointer;
     transition: all .3s ease;
@@ -54,7 +54,7 @@
 
 .contact-form .submit-button:hover {
     opacity: 1;
-    width: 9vw;
+    width: 120px;
 }
 
 .contact-form .contact-footer {

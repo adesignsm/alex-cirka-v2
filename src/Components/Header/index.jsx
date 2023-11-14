@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Context } from '../../utils/context';
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import sanityClient from '../../sanity';
 import ImageUrlBuilder from '@sanity/image-url';
@@ -12,6 +13,7 @@ const Header = () => {
     const [buttons, setButtons] = useState([]);
     const [showDropDown, setShowDropDown] = useState(false);
     const [activeDropDown, setActiveDropDown] = useState(false);
+    const {aboutOpen, setAboutOpen } = Context();
 
     const imageBuilder = ImageUrlBuilder(sanityClient);
     const urlFor = (source) => {
@@ -42,6 +44,8 @@ const Header = () => {
         if (e.target.innerText.toLowerCase().indexOf('work') !== -1) {
             setShowDropDown(!showDropDown);
             setActiveDropDown(!activeDropDown);
+        } else if (e.target.innerText.toLowerCase().indexOf('about') !== -1) {
+            setAboutOpen(!aboutOpen);
         }
     }
 

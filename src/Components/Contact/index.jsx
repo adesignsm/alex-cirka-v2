@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import emailjs from "emailjs-com";
 import { BsArrowRight } from 'react-icons/bs';
-import sanityClient from '../../sanity';
 import './index.css';
+
+const SERVICE_ID = "service_0segoxi";
+const TEMPLATE_ID = "template_mhea5zf";
+const USER_ID = "_4kt98Jj-6hp6cWoO";
 
 const Contact = ({data}) => {
     const [errors, setErrors] = useState({});
@@ -28,8 +32,8 @@ const Contact = ({data}) => {
         });
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
+    const handleSubmit = (e) => {
+        e.preventDefault();
         const newErrors = {};
 
         if (!formData.name.trim()) {
@@ -47,7 +51,20 @@ const Contact = ({data}) => {
         setErrors(newErrors);
 
         if (Object.keys(newErrors).length === 0) {
-            console.log('Form submitted:', formData);
+            e.preventDefault();
+
+            emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, e.target, USER_ID).then((result) => {
+                if (result.text === "OK") {
+                    document.querySelector(".submit-button-text").innerHTML = "Message sent. Thank you";
+                } else {
+                    document.querySelector(".submit-button-text").innerHTML = "Sorry. Your message was not sent";
+                }
+            }, (error) => {
+                document.querySelector(".submit-button-text").innerHTML = "Sorry. Your message was not sent";
+                console.log(error.text);
+            });
+
+            e.target.reset();
         }
     };
 
@@ -61,7 +78,7 @@ const Contact = ({data}) => {
 
   return (
     <>
-        <form onSubmit={handleSubmit} className='contact-form'>
+        <form onSubmit={(e) => handleSubmit(e)} className='contact-form'>
             <div className='name-input'>
                 <label htmlFor='name' className='not-focused'>Name <span>*</span></label>
                 <input 
@@ -144,7 +161,7 @@ const Contact = ({data}) => {
 
         <div className='contact-footer'>
             <button type="submit" className='submit-button'> 
-                <BsArrowRight/> Send
+                <BsArrowRight/> <span className='submit-button-text'>Send</span>
             </button>
             <ul>
                {socialLinks ? socialLinks.map((link) => {
