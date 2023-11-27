@@ -12,8 +12,6 @@ const About = () => {
     const [data, setData] = useState([]);
     const { aboutOpen, setAboutOpen } = Context();
 
-    console.log(aboutOpen)
-
     const imageBuilder = ImageUrlBuilder(sanityClient);
     const urlFor = (source) => {
         return imageBuilder.image(source);
