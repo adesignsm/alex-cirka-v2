@@ -11,7 +11,7 @@ const Project = ({data}) => {
                     {data && (
                         <div className='project-info'>
                             <h1>{data.projectTitle}</h1>
-                            {/* <h3>{data.projectDescription ? data.projectDescription : null}</h3> */}
+                            <h3>{data.projectDescription ? data.projectDescription : null}</h3>
                         </div>
                     )}
                 </div>
