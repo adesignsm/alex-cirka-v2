@@ -1,7 +1,7 @@
 .about-container {
-    position: relative;
+    position: fixed;
     width: 96vw;
-    height: 96vh;
+    height: auto;
     margin: 1rem;
     padding: 1rem;
     background-color: rgba(255, 255, 255, 0.4);
@@ -10,7 +10,7 @@
     border-radius: 10px;
     display: flex;
     transition: all .3s ease;
-    z-index: 998;
+    z-index: 997;
 }
 
 .hidden {

@@ -7,6 +7,7 @@ import "./root.css";
 import Header from "./Components/Header";
 import About from "./Components/About";
 import Scene from "./Components/Scene";
+import Projects from "./Components/Projects";
 
 const App = () => {
     const [data, setData] = useState([]);
@@ -35,11 +36,12 @@ const App = () => {
 
     return (
         <>
-            <main style={mainStyle}>
+            <main id="main-page" style={mainStyle}>
                 <ContextProvider>
                     <Header />
                     <About />
                     <Scene />
+                    <Projects />
                 </ContextProvider>
             </main>
         </>
