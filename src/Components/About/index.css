@@ -1,5 +1,6 @@
-.about-container {
-    position: fixed;
+
+ .about-container {
+    position: absolute;
     width: 96vw;
     height: auto;
     margin: 1rem;
@@ -10,18 +11,20 @@
     border-radius: 10px;
     display: flex;
     transition: all .3s ease;
-    z-index: 997;
+    z-index: 1000;
+    top: 4em;
+    left: 0;
 }
 
 .hidden {
     pointer-events: none;
     opacity: 0;
-    margin-left: 2rem;
+    /* margin-left: 2rem; */
 }
 
 .show {
     opacity: 1;
-    margin-left: 0;
+    /* margin-left: 0; */
 }
 
 .about-container .left-column {
@@ -85,3 +88,4 @@
     float: right;
     cursor: pointer;
 }
+
