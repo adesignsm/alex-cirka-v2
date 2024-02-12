@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { IoClose } from 'react-icons/io5';
 import { Context } from '../../utils/context';
 import ReactPlayer from 'react-player';
@@ -10,7 +10,7 @@ import "./index.css";
 
 const About = () => {
     const [data, setData] = useState([]);
-    const { aboutOpen, setAboutOpen } = Context();
+    const { aboutOpen, setAboutOpen, setSearchVisible } = Context();
 
     const imageBuilder = ImageUrlBuilder(sanityClient);
     const urlFor = (source) => {
@@ -26,8 +26,11 @@ const About = () => {
         });
     }, []);
 
+    
+
     const handleCloseAbout = () => {
         setAboutOpen(false);
+        setSearchVisible(true);
     }
 
     return (
@@ -36,6 +39,7 @@ const About = () => {
                 <div className='left-column'>
                     {data.leftColumn &&
                         <>
+                            {/* ABOUT */}
                             <article className='intro-text-container'>
                                 <h3>{data.leftColumn.introText[0].children[0].text}</h3>
                             </article>
@@ -52,6 +56,9 @@ const About = () => {
                         </>
                     }
                 </div>
+
+
+                
                 <div className='right-column'>
                     <IoClose className='close-button' size={40} onClick={handleCloseAbout}/>
                     {data.rightColumn &&
@@ -59,9 +66,9 @@ const About = () => {
                             <div className='video-reel-container'>
                                 {
                                     !data.rightColumn.videoReel ? (
-                                        <>
+                                        <Suspense fallback={<div>Loading video...</div>}> {/* Provide a fallback */}
                                             <ReactPlayer url={'https://vimeo.com/796324789'} controls />
-                                        </>
+                                        </Suspense>
                                     ) : (
                                         <>
                                             <h3>Video goes here</h3>

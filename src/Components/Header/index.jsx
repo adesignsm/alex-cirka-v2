@@ -13,7 +13,7 @@ const Header = () => {
     const [buttons, setButtons] = useState([]);
     const [showDropDown, setShowDropDown] = useState(false);
     const [activeDropDown, setActiveDropDown] = useState(false);
-    const {aboutOpen, setAboutOpen } = Context();
+    const {aboutOpen, setAboutOpen} = Context();
 
     const imageBuilder = ImageUrlBuilder(sanityClient);
     const urlFor = (source) => {
