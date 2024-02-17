@@ -1,9 +1,23 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import BlockContent from '@sanity/block-content-to-react';
+import sanityClient from '../../sanity';
+import ImageUrlBuilder from '@sanity/image-url';
+
 
 import './index.css';
 
+
 const Project = ({data}) => {
-    console.log(data.projectTitle);
+    
+    const imageBuilder = ImageUrlBuilder(sanityClient);
+    const urlFor = (source) => {
+        return imageBuilder.image(source);
+    }
+
+    useEffect(() => {
+        console.log('Project data:', data);
+    }, [data]);
+
     return (
         <>
             <div className='project-lightbox'>
@@ -11,11 +25,25 @@ const Project = ({data}) => {
                     {data && (
                         <div className='project-info'>
                             <h1>{data.projectTitle}</h1>
-                            <h3>{data.projectDescription ? data.projectDescription : null}</h3>
+                        
+                             <p>
+                                {data.projectDescription && (
+                                    <BlockContent 
+                                    blocks={data.projectDescription} 
+                                    />
+                                )}
+                            </p>
                         </div>
                     )}
                 </div>
-            </div>
+                <div className='right-column'>
+                    {/* Render the projectThumbnail version two*/}
+                     {data.projectThumbnail && data.projectThumbnail.asset && (
+                                <img className="responsive-image" src={urlFor(data.projectThumbnail.asset._ref)} alt={data.projectTitle} />
+                            )}   
+                    </div>
+                </div>
+           
         </>
     )
 }
