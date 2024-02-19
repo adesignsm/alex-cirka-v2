@@ -6,7 +6,7 @@ import "./root.css";
 
 import Header from "./Components/Header";
 import About from "./Components/About";
-import Scene from "./Components/Scene";
+// import Scene from "./Components/Scene";
 import Projects from "./Components/Projects";
 
 const App = () => {
@@ -40,7 +40,7 @@ const App = () => {
                 <ContextProvider>
                     <Header />
                     <About />
-                    <Scene />
+                    {/* <Scene /> */}
                     <Projects />
                 </ContextProvider>
             </main>

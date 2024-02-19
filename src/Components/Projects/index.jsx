@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 
 import sanityClient from '../../sanity';
 import ImageUrlBuilder from '@sanity/image-url';
@@ -59,7 +59,9 @@ const Projects = () => {
                     )}
                 </div>
             </div>
-            <Project data={projectData} />
+            <Suspense fallback={<h1>Loading profile...</h1>}>
+                <Project data={projectData} />
+            </Suspense>
         </>
     )
 }
