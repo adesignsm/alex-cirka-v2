@@ -5,10 +5,11 @@ const GeneralContext = createContext();
 export function ContextProvider({ children }) {
 
   const [aboutOpen, setAboutOpen] = useState(false);
+  const [lightBoxOpen, setLightBoxOpen] = useState(false);
   const [searchVisible, setSearchVisible] = useState(true);
 
   return (
-    <GeneralContext.Provider value={{ aboutOpen, setAboutOpen, searchVisible, setSearchVisible }}>
+    <GeneralContext.Provider value={{ aboutOpen, setAboutOpen, lightBoxOpen, setLightBoxOpen, searchVisible, setSearchVisible }}>
       {children}
     </GeneralContext.Provider>
   );

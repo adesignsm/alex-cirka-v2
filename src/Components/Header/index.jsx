@@ -3,7 +3,7 @@ import { Context } from '../../utils/context';
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import sanityClient from '../../sanity';
 import ImageUrlBuilder from '@sanity/image-url';
-
+// import Link from 'react-router-dom';
 import "./index.css";
 
 const Header = () => {

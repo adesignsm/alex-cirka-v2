@@ -36,23 +36,28 @@ const About = () => {
     return (
         <>
             <div className={`about-container ${aboutOpen ? 'show' : 'hidden'}`}>
+                <div>
+                <IoClose className='close-button' size={40} onClick={handleCloseAbout}/>
+                </div>
+                <div className='columns-container'>
+
                 <div className='left-column'>
                     {data.leftColumn &&
                         <>
                             {/* ABOUT */}
-                            <article className='intro-text-container'>
+                            <div className='intro-text-container'>
                                 <h3>{data.leftColumn.introText[0].children[0].text}</h3>
-                            </article>
-                            <article className='select-clients-container'>
+                            </div>
+                            <div className='select-clients-container'>
                                 <h2> Select Clients </h2>
                                 <ul>
                                     {data.leftColumn.selectClient.map((item, index) => {
                                         return (
                                             <li key={index}>{item.clientName}</li>
-                                        )
-                                    })}
+                                            )
+                                        })}
                                 </ul>
-                            </article>
+                            </div>
                         </>
                     }
                 </div>
@@ -60,7 +65,7 @@ const About = () => {
 
                 
                 <div className='right-column'>
-                    <IoClose className='close-button' size={40} onClick={handleCloseAbout}/>
+                    {/* <IoClose className='close-button' size={40} onClick={handleCloseAbout}/> */}
                     {data.rightColumn &&
                         <>
                             <div className='video-reel-container'>
@@ -79,8 +84,8 @@ const About = () => {
                             <div className='contact-container'>
                                 {data.rightColumn.contactEmail ? (
                                     <Contact data={data}/>
-                                ) : (
-                                    <button>
+                                    ) : (
+                                        <button>
                                         <a href='mailto:alexcirka@gmail.com'> CONTACT </a>
                                     </button>
                                 )}
@@ -88,6 +93,7 @@ const About = () => {
                         </>
                     }
                 </div>
+                    </div>
             </div>
         </>
     )
