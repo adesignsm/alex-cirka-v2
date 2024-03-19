@@ -111,3 +111,26 @@
     display: flex;
     align-items: center;
 }
+
+/* Media Query for Mobile Devices */
+@media (max-width: 768px) {
+    .header-nav {
+       width: 100%;
+    }
+
+    .header-nav ul {
+        width: 80%;
+    }
+
+    .header-nav .header-logo {
+        margin-left: 0; /* Remove margin on small screens */
+        margin-bottom: 1rem; /* Add spacing between logo and buttons */
+    }
+
+    .header-nav ul > li {
+        font-size: smaller;
+    }
+
+
+
+}

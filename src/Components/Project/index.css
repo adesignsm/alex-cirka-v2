@@ -15,12 +15,32 @@
     z-index: 998;
 }
 
+.columns-container {
+    display: flex;
+    flex-direction: row;
+}
+
 .left-column {
     padding: 1rem;
     border-radius: 10px;
     margin-right: 50px;
     width: 50%;
 }
+
+.hidden {
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    overflow: hidden;
+    /* margin-left: 2rem; */
+}
+
+.show {
+    opacity: 1;
+    visibility: visible;
+    /* margin-left: 0; */
+}
+
 
 .right-column {
     width: 50%;

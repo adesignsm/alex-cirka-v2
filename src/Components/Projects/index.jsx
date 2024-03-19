@@ -1,5 +1,5 @@
 import { useEffect, useState, Suspense } from 'react';
-
+import { Context } from '../../utils/context';
 import sanityClient from '../../sanity';
 import ImageUrlBuilder from '@sanity/image-url';
 
@@ -10,6 +10,7 @@ import Project from '../Project';
 const Projects = () => {
     const [data, setData] = useState([]);
     const [projectData, setProjectData] = useState([]);
+    const { lightBoxOpen, setLightBoxOpen } = Context(); 
 
     const imageBuilder = ImageUrlBuilder(sanityClient);
     const urlFor = (source) => {
@@ -35,9 +36,14 @@ const Projects = () => {
 
     const handleOnClick = (project) => {
         setProjectData(project);
+        console.log('test');
+
+        if (project) {
+            setLightBoxOpen(true);
+        }
     }
 
-    console.log(projectData)
+    console.log(lightBoxOpen)
 
     return (
         <>
